@@ -5,8 +5,8 @@
 
 	<title>Class MongoDB\Database | MongoDB PHP library</title>
 
-	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
-	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?205d89eabbfe9d1c1773b4b5cfc2b45c150df981">
+	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
 
 </head>
 
@@ -65,6 +65,10 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -114,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Database.html#18-202" title="Go to source code">Database.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Database.html#21-285" title="Go to source code">Database.php</a>
 		<br>
 	</div>
 
@@ -134,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Database.html#25-42" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$databaseName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#36-91" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs new Database instance.</p>
@@ -146,6 +150,12 @@
 <p>This class provides methods for database-specific operations and serves
 as a gateway for accessing collections.</p>
 
+<p>Supported options:
+ * readConcern (MongoDB\Driver\ReadConcern): The default read concern to use for database operations and selected collections. Defaults to the Manager's read concern.
+ * readPreference (MongoDB\Driver\ReadPreference): The default read preference to use for database operations and selected collections. Defaults to the Manager's read preference.
+ * typeMap (array): Default type map for cursors and BSON documents.
+ * writeConcern (MongoDB\Driver\WriteConcern): The default write concern to use for database operations and selected collections. Defaults to the Manager's write concern.</p>
+
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
@@ -153,14 +163,96 @@ as a gateway for accessing collections.</p>
 						<dd>Manager instance from the driver</dd>
 						<dt><var>$databaseName</var></dt>
 						<dd>Database name</dd>
-						<dt><var>$writeConcern</var></dt>
-						<dd>Default write concern to apply</dd>
-						<dt><var>$readPreference</var></dt>
-						<dd>Default read preference to apply</dd>
+						<dt><var>$options</var></dt>
+						<dd>Database options</dd>
 					</dl></div>
 
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code>
+					</div>
 
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__debugInfo" id="___debugInfo">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___debugInfo">#</a>
+			<code><a href="source-class-MongoDB.Database.html#93-109" title="Go to source code">__debugInfo</a>( )</code>
+
+			<div class="description short">
+				<p>Return internal properties for debugging purposes.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return internal properties for debugging purposes.</p>
+
+
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__get" id="___get">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-MongoDB.Collection.html">MongoDB\Collection</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___get">#</a>
+			<code><a href="source-class-MongoDB.Database.html#111-126" title="Go to source code">__get</a>( <span>string <var>$collectionName</var></span> )</code>
+
+			<div class="description short">
+				<p>Select a collection within this database.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Select a collection within this database.</p>
+
+<p>Note: collections whose names contain special characters (e.g. ".") may
+be selected with complex syntax (e.g. $database->{"system.profile"}) or
+<code><a href="class-MongoDB.Database.html#_selectCollection">MongoDB\Database::selectCollection()</a></code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$collectionName</var></dt>
+						<dd>Name of the collection to select</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Collection.html">MongoDB\Collection</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.overloading#object.get<br>
+							http://php.net/types.string#language.types.string.parsing.complex<br>
+					</div>
 
 
 			</div>
@@ -177,7 +269,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-MongoDB.Database.html#44-52" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#128-136" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				<p>Return the database name.</p>
@@ -195,7 +287,7 @@ as a gateway for accessing collections.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="createCollection" id="_createCollection">
+		<tr data-order="command" id="_command">
 
 			<td class="attributes"><code>
 				 public 
@@ -205,8 +297,56 @@ as a gateway for accessing collections.</p>
 			</td>
 
 			<td class="name"><div>
+			<a class="anchor" href="#_command">#</a>
+			<code><a href="source-class-MongoDB.Database.html#138-161" title="Go to source code">command</a>( <span>array|object <var>$command</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Execute a command on this database.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Execute a command on this database.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$command</var></dt>
+						<dd>Command document</dd>
+						<dt><var>$options</var></dt>
+						<dd>Options for command execution</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						MongoDB\Driver\Cursor
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code>
+					</div>
+
+					<h4>See</h4>
+					<div class="list">
+							DatabaseCommand::__construct() for supported options<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="createCollection" id="_createCollection">
+
+			<td class="attributes"><code>
+				 public 
+				object
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
 			<a class="anchor" href="#_createCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#54-70" title="Go to source code">createCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#163-181" title="Go to source code">createCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Create a new collection explicitly.</p>
@@ -226,14 +366,13 @@ as a gateway for accessing collections.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						object<br>Command result document
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/create/<br>
-							http://docs.mongodb.org/manual/reference/method/db.createCollection/<br>
+							CreateCollection::__construct() for supported options<br>
 					</div>
 
 
@@ -244,14 +383,14 @@ as a gateway for accessing collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_drop">#</a>
-			<code><a href="source-class-MongoDB.Database.html#72-84" title="Go to source code">drop</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#183-200" title="Go to source code">drop</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop this database.</p>
@@ -261,16 +400,21 @@ as a gateway for accessing collections.</p>
 				<p>Drop this database.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
+					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						array|object<br>Command result document
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/dropDatabase/<br>
+							DropDatabase::__construct() for supported options<br>
 					</div>
 
 
@@ -281,14 +425,14 @@ as a gateway for accessing collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#86-100" title="Go to source code">dropCollection</a>( <span>string <var>$collectionName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#202-220" title="Go to source code">dropCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop a collection within this database.</p>
@@ -301,18 +445,20 @@ as a gateway for accessing collections.</p>
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$collectionName</var></dt>
-						<dd></dd>
+						<dd>Collection name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						array|object<br>Command result document
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/drop/<br>
+							DropCollection::__construct() for supported options<br>
 					</div>
 
 
@@ -330,7 +476,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-MongoDB.Database.html#102-110" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#222-230" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the database name.</p>
@@ -363,7 +509,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listCollections">#</a>
-			<code><a href="source-class-MongoDB.Database.html#112-127" title="Go to source code">listCollections</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#232-245" title="Go to source code">listCollections</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Returns information for all collections in this database.</p>
@@ -387,7 +533,7 @@ as a gateway for accessing collections.</p>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/listCollections/<br>
+							ListCollections::__construct() for supported options<br>
 					</div>
 
 
@@ -405,7 +551,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#129-147" title="Go to source code">selectCollection</a>( <span>string <var>$collectionName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#247-265" title="Go to source code">selectCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a collection within this database.</p>
@@ -414,18 +560,13 @@ as a gateway for accessing collections.</p>
 			<div class="description detailed hidden">
 				<p>Select a collection within this database.</p>
 
-<p>If a write concern or read preference is not specified, the write concern
-or read preference of the Database will be applied, respectively.</p>
-
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$collectionName</var></dt>
 						<dd>Name of the collection to select</dd>
-						<dt><var>$writeConcern</var></dt>
-						<dd>Default write concern to apply</dd>
-						<dt><var>$readPreference</var></dt>
-						<dd>Default read preference to apply</dd>
+						<dt><var>$options</var></dt>
+						<dd>Collection constructor options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -434,6 +575,52 @@ or read preference of the Database will be applied, respectively.</p>
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							Collection::__construct() for supported options<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="withOptions" id="_withOptions">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_withOptions">#</a>
+			<code><a href="source-class-MongoDB.Database.html#267-284" title="Go to source code">withOptions</a>( <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Get a clone of this database with different options.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Get a clone of this database with different options.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$options</var></dt>
+						<dd>Database constructor options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							Database::__construct() for supported options<br>
+					</div>
 
 
 			</div>

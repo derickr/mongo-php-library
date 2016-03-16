@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class MongoDB\Model\BSONDocument | MongoDB PHP library</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?205d89eabbfe9d1c1773b4b5cfc2b45c150df981">
+	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MongoDB PHP library</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-MongoDB.Model.html" title="Summary of MongoDB\Model"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-MongoDB.html">
+							MongoDB<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-MongoDB.Exception.html">
+							Exception						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-MongoDB.Model.html">
+							Model						</a>
+							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
+								</ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-MongoDB.Model.BSONArray.html">BSONArray</a></li>
+				<li class="active"><a href="class-MongoDB.Model.BSONDocument.html">BSONDocument</a></li>
+				<li><a href="class-MongoDB.Model.CollectionInfo.html">CollectionInfo</a></li>
+				<li><a href="class-MongoDB.Model.DatabaseInfo.html">DatabaseInfo</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfo.html">IndexInfo</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-MongoDB.Model.CollectionInfoIterator.html">CollectionInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.DatabaseInfoIterator.html">DatabaseInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfoIterator.html">IndexInfoIterator</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class BSONDocument</h1>
+
+
+	<div class="description">
+	<p>Model class for a BSON document.</p>
+
+<p>The internal data will be cast to an object during BSON serialization to
+ensure that it becomes a BSON document.</p>
+	</div>
+
+	<dl class="tree well">
+		<dd style="padding-left:0px">
+ArrayObject
+			 implements 
+<span>IteratorAggregate</span>, 
+			
+<span>Traversable</span>, 
+			
+<span>ArrayAccess</span>, 
+			
+<span>Serializable</span>, 
+			
+<span>Countable</span>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>MongoDB\Model\BSONDocument</span></b>			
+			 implements 
+<span>MongoDB\BSON\Serializable</span>, 
+			
+<span>MongoDB\BSON\Unserializable</span>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a>\<a href="namespace-MongoDB.Model.html">Model</a><br>
+		
+
+				<b>Api</b>
+				<br>
+			<b>Located at</b> <a href="source-class-MongoDB.Model.BSONDocument.html#9-69" title="Go to source code">Model/BSONDocument.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#19-30" title="Go to source code">__construct</a>( <span> <var>$input</var> = []</span>, <span> <var>$flags</var> = MongoDB\Model\ArrayObject::ARRAY_AS_PROPS</span>, <span> <var>$iterator_class</var> = <span class="php-quote">'ArrayIterator'</span></span> )</code>
+
+			<div class="description short">
+				<p>Constructor.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructor.</p>
+
+<p>This overrides the parent constructor to allow property access of entries
+by default.</p>
+
+
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/arrayobject.construct<br>
+					</div>
+
+					<h4>Overrides</h4>
+					<div class="list"><code>ArrayObject::__construct</code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__set_state" id="___set_state">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-MongoDB.Model.BSONDocument.html">MongoDB\Model\BSONDocument</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___set_state">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#32-46" title="Go to source code">__set_state</a>( <span>array <var>$properties</var></span> )</code>
+
+			<div class="description short">
+				<p>Factory method for var_export().</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Factory method for var_export().</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$properties</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Model.BSONDocument.html">MongoDB\Model\BSONDocument</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.magic#object.set-state<br>
+							http://php.net/var-export<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="bsonSerialize" id="_bsonSerialize">
+
+			<td class="attributes"><code>
+				 public 
+				object
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_bsonSerialize">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#48-57" title="Go to source code">bsonSerialize</a>( )</code>
+
+			<div class="description short">
+				<p>Serialize the document to BSON.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Serialize the document to BSON.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						object
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/mongodb-bson-serializable.bsonserialize<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="bsonUnserialize" id="_bsonUnserialize">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_bsonUnserialize">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#59-68" title="Go to source code">bsonUnserialize</a>( <span>array <var>$data</var></span> )</code>
+
+			<div class="description short">
+				<p>Unserialize the document to BSON.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Unserialize the document to BSON.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$data</var></dt>
+						<dd>Array data</dd>
+					</dl></div>
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/mongodb-bson-unserializable.bsonunserialize<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from ArrayObject</h3></div>
+			<p class="elementList">
+				<code>append()</code>, 
+				<code>asort()</code>, 
+				<code>count()</code>, 
+				<code>exchangeArray()</code>, 
+				<code>getArrayCopy()</code>, 
+				<code>getFlags()</code>, 
+				<code>getIterator()</code>, 
+				<code>getIteratorClass()</code>, 
+				<code>ksort()</code>, 
+				<code>natcasesort()</code>, 
+				<code>natsort()</code>, 
+				<code>offsetExists()</code>, 
+				<code>offsetGet()</code>, 
+				<code>offsetSet()</code>, 
+				<code>offsetUnset()</code>, 
+				<code>serialize()</code>, 
+				<code>setFlags()</code>, 
+				<code>setIteratorClass()</code>, 
+				<code>uasort()</code>, 
+				<code>uksort()</code>, 
+				<code>unserialize()</code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Constants summary</h2></div>
+		</div>
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Constants inherited from ArrayObject</h3></div>
+			<p class="elementList">
+				<code><b>ARRAY_AS_PROPS</b></code>, 
+				<code><b>STD_PROP_LIST</b></code>
+			</p>
+		</div>
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		MongoDB PHP library API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

@@ -5,8 +5,8 @@
 
 	<title>Class MongoDB\InsertOneResult | MongoDB PHP library</title>
 
-	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
-	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?205d89eabbfe9d1c1773b4b5cfc2b45c150df981">
+	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
 
 </head>
 
@@ -65,6 +65,10 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -117,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.InsertOneResult.html#7-66" title="Go to source code">InsertOneResult.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.InsertOneResult.html#8-78" title="Go to source code">InsertOneResult.php</a>
 		<br>
 	</div>
 
@@ -137,7 +141,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#15-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>mixed <var>$insertedId</var></span> )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#17-28" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>mixed <var>$insertedId</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -173,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedCount">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#27-38" title="Go to source code">getInsertedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#30-46" title="Go to source code">getInsertedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were inserted.</p>
@@ -182,7 +186,7 @@
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were inserted.</p>
 
-<p>This value is undefined if the write was not acknowledged.</p>
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -191,10 +195,14 @@
 						integer
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
-							<code><a href="class-MongoDB.InsertOneResult.html#_isAcknowledged">MongoDB\InsertOneResult::isAcknowledged()</a></code><br>
+							InsertOneResult::isAcknowledged()<br>
 					</div>
 
 
@@ -212,7 +220,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedId">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#40-52" title="Go to source code">getInsertedId</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#48-60" title="Go to source code">getInsertedId</a>( )</code>
 
 			<div class="description short">
 				<p>Return the inserted document's ID.</p>
@@ -249,7 +257,7 @@ driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#54-65" title="Go to source code">isAcknowledged</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#62-77" title="Go to source code">isAcknowledged</a>( )</code>
 
 			<div class="description short">
 				<p>Return whether this insert was acknowledged by the server.</p>
@@ -260,6 +268,10 @@ driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
 
 <p>If the insert was not acknowledged, other fields from the WriteResult
 (e.g. insertedCount) will be undefined.</p>
+
+<p>If the insert was not acknowledged, other fields from the WriteResult
+(e.g. insertedCount) will be undefined and their getter methods should
+not be invoked.</p>
 
 
 

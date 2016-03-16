@@ -5,8 +5,8 @@
 
 	<title>Class MongoDB\Client | MongoDB PHP library</title>
 
-	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
-	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?205d89eabbfe9d1c1773b4b5cfc2b45c150df981">
+	<link rel="stylesheet" href="resources/style.css?70c1d062672daa3f906b72e4f5d03d4bc5c4174d">
 
 </head>
 
@@ -65,6 +65,10 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -114,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Client.html#14-122" title="Go to source code">Client.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Client.html#15-167" title="Go to source code">Client.php</a>
 		<br>
 	</div>
 
@@ -134,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Client.html#20-35" title="Go to source code">__construct</a>( <span>string <var>$uri</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$driverOptions</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#27-59" title="Go to source code">__construct</a>( <span>string <var>$uri</var> = <span class="php-quote">'mongodb://localhost:27017'</span></span>, <span>array <var>$uriOptions</var> = []</span>, <span>array <var>$driverOptions</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a new Client instance.</p>
@@ -147,23 +151,143 @@
 cluster of servers. It serves as a gateway for accessing individual
 databases and collections.</p>
 
+<p>Supported driver-specific options:
+ * typeMap (array): Default type map for cursors and BSON documents.</p>
+
+<p>Other options are documented in MongoDB\Driver\Manager::__construct().</p>
+
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$uri</var></dt>
 						<dd>MongoDB connection string</dd>
-						<dt><var>$options</var></dt>
+						<dt><var>$uriOptions</var></dt>
 						<dd>Additional connection string options</dd>
 						<dt><var>$driverOptions</var></dt>
 						<dd>Driver-specific options</dd>
 					</dl></div>
 
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code>
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
 							http://docs.mongodb.org/manual/reference/connection-string/<br>
+							http://php.net/manual/en/mongodb-driver-manager.construct.php<br>
+							http://php.net/manual/en/mongodb.persistence.php#mongodb.persistence.typemaps<br>
 					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__debugInfo" id="___debugInfo">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___debugInfo">#</a>
+			<code><a href="source-class-MongoDB.Client.html#61-74" title="Go to source code">__debugInfo</a>( )</code>
+
+			<div class="description short">
+				<p>Return internal properties for debugging purposes.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return internal properties for debugging purposes.</p>
+
+
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__get" id="___get">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___get">#</a>
+			<code><a href="source-class-MongoDB.Client.html#76-91" title="Go to source code">__get</a>( <span>string <var>$databaseName</var></span> )</code>
+
+			<div class="description short">
+				<p>Select a database.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Select a database.</p>
+
+<p>Note: collections whose names contain special characters (e.g. "-") may
+be selected with complex syntax (e.g. $client->{"that-database"}) or
+<code><a href="class-MongoDB.Client.html#_selectDatabase">MongoDB\Client::selectDatabase()</a></code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$databaseName</var></dt>
+						<dd>Name of the database to select</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.overloading#object.get<br>
+							http://php.net/types.string#language.types.string.parsing.complex<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__toString" id="___toString">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___toString">#</a>
+			<code><a href="source-class-MongoDB.Client.html#93-101" title="Go to source code">__toString</a>( )</code>
+
+			<div class="description short">
+				<p>Return the connection string (i.e. URI).</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return the connection string (i.e. URI).</p>
+
+
+
+
+
 
 
 			</div>
@@ -173,14 +297,14 @@ databases and collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#37-51" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#103-121" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop a database.</p>
@@ -193,18 +317,20 @@ databases and collections.</p>
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$databaseName</var></dt>
-						<dd></dd>
+						<dd>Database name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						array|object<br>Command result document
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/dropDatabase/<br>
+							DropDatabase::__construct() for supported options<br>
 					</div>
 
 
@@ -222,7 +348,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listDatabases">#</a>
-			<code><a href="source-class-MongoDB.Client.html#53-79" title="Go to source code">listDatabases</a>( )</code>
+			<code><a href="source-class-MongoDB.Client.html#123-135" title="Go to source code">listDatabases</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>List databases.</p>
@@ -238,14 +364,10 @@ databases and collections.</p>
 						<code><a href="class-MongoDB.Model.DatabaseInfoIterator.html">MongoDB\Model\DatabaseInfoIterator</a></code>
 					</div>
 
-					<h4>Throws</h4>
-					<div class="list">
-						<code><a href="class-MongoDB.Exception.UnexpectedValueException.html">MongoDB\Exception\UnexpectedValueException</a></code><br>if the command result is malformed
-					</div>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/listDatabases/<br>
+							ListDatabases::__construct() for supported options<br>
 					</div>
 
 
@@ -263,7 +385,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectCollection">#</a>
-			<code><a href="source-class-MongoDB.Client.html#81-101" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#137-151" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a collection.</p>
@@ -272,9 +394,6 @@ databases and collections.</p>
 			<div class="description detailed hidden">
 				<p>Select a collection.</p>
 
-<p>If a write concern or read preference is not specified, the write concern
-or read preference of the Client will be applied, respectively.</p>
-
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
@@ -282,10 +401,8 @@ or read preference of the Client will be applied, respectively.</p>
 						<dd>Name of the database containing the collection</dd>
 						<dt><var>$collectionName</var></dt>
 						<dd>Name of the collection to select</dd>
-						<dt><var>$writeConcern</var></dt>
-						<dd>Default write concern to apply</dd>
-						<dt><var>$readPreference</var></dt>
-						<dd>Default read preference to apply</dd>
+						<dt><var>$options</var></dt>
+						<dd>Collection constructor options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -294,6 +411,10 @@ or read preference of the Client will be applied, respectively.</p>
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							Collection::__construct() for supported options<br>
+					</div>
 
 
 			</div>
@@ -310,7 +431,7 @@ or read preference of the Client will be applied, respectively.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#103-121" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#153-166" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a database.</p>
@@ -319,18 +440,13 @@ or read preference of the Client will be applied, respectively.</p>
 			<div class="description detailed hidden">
 				<p>Select a database.</p>
 
-<p>If a write concern or read preference is not specified, the write concern
-or read preference of the Client will be applied, respectively.</p>
-
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$databaseName</var></dt>
 						<dd>Name of the database to select</dd>
-						<dt><var>$writeConcern</var></dt>
-						<dd>Default write concern to apply</dd>
-						<dt><var>$readPreference</var></dt>
-						<dd>Default read preference to apply</dd>
+						<dt><var>$options</var></dt>
+						<dd>Database constructor options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -339,6 +455,10 @@ or read preference of the Client will be applied, respectively.</p>
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							Database::__construct() for supported options<br>
+					</div>
 
 
 			</div>

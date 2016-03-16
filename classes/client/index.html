@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Client - MongoDB PHP library</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Client";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../pretty.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> MongoDB PHP library</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/">Getting Started</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../example-data/">Example Data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Classes</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Client</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#mongodbclient">MongoDB\Client</a></li>
+                
+                    <li><a class="toctree-l4" href="#selecting-databases-and-collections">Selecting Databases and Collections</a></li>
+                
+                    <li><a class="toctree-l4" href="#database-management">Database Management</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../database/">Database</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../collection/">Collection</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">MongoDB PHP library</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Classes &raquo;</li>
+        
+      
+    
+    <li>Client</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mongodbclient">MongoDB\Client<a class="headerlink" href="#mongodbclient" title="Permanent link">&para;</a></h1>
+<p><code>MongoDB\Client</code> serves as an entry point for the library and driver. It is
+constructed with the same arguments as the driver&rsquo;s <code>MongoDB\Driver\Manager</code>
+class, which it composes. Additional reference may be found in the
+<a href="http://php.net/manual/en/mongodb-driver-manager.construct.php]"><code>MongoDB\Driver\Manager::__construct</code></a>
+and
+<a href="https://docs.mongodb.org/manual/reference/connection-string/">Connection String</a>
+documentation.</p>
+<pre><code>/* By default, the driver connects to mongodb://localhost:27017 */
+$client = new MongoDB\Client;
+
+/* Any URI options will be merged into the URI string */
+$client = new MongoDB\Client(
+    'mongodb://rs1.example.com,rs2.example.com/?replicaSet=myReplicaSet',
+    ['readPreference' =&gt; 'secondaryPreferred']
+);
+</code></pre>
+
+<p>Driver options may be provided as the third argument. In addition to options
+supported by the extension, the PHP library allows you to specify a default
+type map to apply to the cursors it creates. A more thorough description of type
+maps may be found in the driver&rsquo;s
+<a href="http://php.net/manual/en/mongodb.persistence.php#mongodb.persistence.typemaps">Persistence documentation</a>.</p>
+<pre><code>/* This example instructs the library to unserialize root and embedded BSON
+ * documents as PHP arrays, like the legacy driver (i.e. ext-mongo). */
+$client = new MongoDB\Client(null, [], [
+    'typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array'],
+);
+</code></pre>
+
+<p>By default, the library will unserialize BSON documents and arrays as
+<code>MongoDB\Model\BSONDocument</code> and <code>MongoDB\Model\BSONArray</code> objects,
+respectively. Each of these model classes extends PHP&rsquo;s
+<a href="http://php.net/arrayobject"><code>ArrayObject</code></a> class and implements the driver&rsquo;s
+<a href="http://php.net/mongodb-bson-serializable"><code>MongoDB\BSON\Serializable</code></a> and
+<a href="http://php.net/mongodb-bson-unserializable"><code>MongoDB\BSON\Unserializable</code></a>
+interfaces.</p>
+<h2 id="selecting-databases-and-collections">Selecting Databases and Collections<a class="headerlink" href="#selecting-databases-and-collections" title="Permanent link">&para;</a></h2>
+<p>The Client class provides methods for creating Database or Collection instances
+(using its internal Manager instance). When selecting a Database or Collection,
+the child will inherit options (e.g. read preference, type map) from the Client.
+New options may also be provided to the <code>selectDatabase()</code> and
+<code>selectCollection()</code> methods.</p>
+<pre><code>$client = new MongoDB\Client;
+
+/* Select the &quot;demo&quot; database */
+$db = $client-&gt;selectDatabase('demo');
+
+/* Select the &quot;demo.users&quot; collection */
+$collection = $client-&gt;selectCollection('demo', 'users');
+
+/* selectDatabase() and selectCollection() also take an options array, which can
+ * override any options inherited from the Client. */
+$db = $client-&gt;selectDatabase('demo', [
+    'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_SECONDARY),
+]);
+
+/* The property accessor may also be used to select a database without
+ * specifying additional options. PHP's complex syntax may be used for selecting
+ * databases whose names contain special characters (e.g. &quot;-&quot;). */
+$db = $client-&gt;demo;
+$db = $client-&gt;{'another-app'};
+</code></pre>
+
+<h2 id="database-management">Database Management<a class="headerlink" href="#database-management" title="Permanent link">&para;</a></h2>
+<p>The Client class has several methods for managing databases.</p>
+<h3 id="dropping-databases">Dropping Databases<a class="headerlink" href="#dropping-databases" title="Permanent link">&para;</a></h3>
+<pre><code>$client = new MongoDB\Client;
+
+$result = $client-&gt;dropDatabase('demo');
+var_dump($result);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#8 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(2) {
+    [&quot;dropped&quot;]=&gt;
+    string(4) &quot;demo&quot;
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h3 id="enumerating-databases">Enumerating Databases<a class="headerlink" href="#enumerating-databases" title="Permanent link">&para;</a></h3>
+<pre><code>$client = new MongoDB\Client;
+
+/* listDatabases() returns an iterator of MongoDB\Model\DatabaseInfo objects */
+foreach ($client-&gt;listDatabases() as $databaseInfo) {
+    var_dump($databaseInfo);
+}
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\DatabaseInfo)#4 (3) {
+  [&quot;name&quot;]=&gt;
+  string(5) &quot;local&quot;
+  [&quot;sizeOnDisk&quot;]=&gt;
+  float(65536)
+  [&quot;empty&quot;]=&gt;
+  bool(false)
+}
+object(MongoDB\Model\DatabaseInfo)#7 (3) {
+  [&quot;name&quot;]=&gt;
+  string(4) &quot;test&quot;
+  [&quot;sizeOnDisk&quot;]=&gt;
+  float(32768)
+  [&quot;empty&quot;]=&gt;
+  bool(false)
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database/" class="btn btn-neutral float-right" title="Database"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../example-data/" class="btn btn-neutral" title="Example Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../example-data/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../database/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

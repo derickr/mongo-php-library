@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Database - MongoDB PHP library</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Database";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../pretty.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> MongoDB PHP library</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/">Getting Started</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../example-data/">Example Data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Classes</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../client/">Client</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Database</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#mongodbdatabase">MongoDB\Database</a></li>
+                
+                    <li><a class="toctree-l4" href="#selecting-collections">Selecting Collections</a></li>
+                
+                    <li><a class="toctree-l4" href="#database-level-operations">Database-level Operations</a></li>
+                
+                    <li><a class="toctree-l4" href="#collection-management">Collection Management</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../collection/">Collection</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">MongoDB PHP library</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Classes &raquo;</li>
+        
+      
+    
+    <li>Database</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mongodbdatabase">MongoDB\Database<a class="headerlink" href="#mongodbdatabase" title="Permanent link">&para;</a></h1>
+<p><code>MongoDB\Database</code> provides methods for common operations on a database, such
+as creating, enumerating, and dropping collections.</p>
+<p>A Database may be constructed directly (using the extension&rsquo;s Manager class) or
+selected from the library&rsquo;s Client class. It supports the following options:</p>
+<ul>
+<li><a href="http://php.net/mongodb-driver-readconcern">readConcern</a></li>
+<li><a href="http://php.net/mongodb-driver-readpreference">readPreference</a></li>
+<li><a href="http://php.net/manual/en/mongodb.persistence.php#mongodb.persistence.typemaps">typeMap</a></li>
+<li><a href="http://php.net/mongodb-driver-writeconcern">writeConcern</a></li>
+</ul>
+<p>If any options are omitted, they will be inherited from the Manager constructor
+argument or object from which the Database was selected.</p>
+<p>Operations within the Database class (e.g. <code>command()</code>) will generally inherit
+the Database&rsquo;s options.</p>
+<h3 id="selecting-collections">Selecting Collections<a class="headerlink" href="#selecting-collections" title="Permanent link">&para;</a></h3>
+<p>The Database class provides methods for creating Collection instances (using its
+internal Manager instance). When selecting a Collection, the child will inherit
+options (e.g. read preference, type map) from the Database. New options may also
+be provided to the <code>selectCollection()</code> method.</p>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+/* Select the &quot;users&quot; collection */
+$collection = $db-&gt;selectCollection('users');
+
+/* selectCollection() also takes an options array, which can override any
+ * options inherited from the Database. */
+$collection = $client-&gt;selectCollection('users', [
+    'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_SECONDARY),
+]);
+
+/* The property accessor may also be used to select a collection without
+ * specifying additional options. PHP's complex syntax may be used for selecting
+ * collection whose names contain special characters (e.g. &quot;.&quot;). */
+$collection = $db-&gt;users;
+$collection = $db-&gt;{'system.profile'};
+</code></pre>
+
+<h2 id="database-level-operations">Database-level Operations<a class="headerlink" href="#database-level-operations" title="Permanent link">&para;</a></h2>
+<p>The Database class has methods for database-level operations, such as dropping
+the database, executing a command, or managing the database&rsquo;s collections.</p>
+<h3 id="dropping-the-database">Dropping the Database<a class="headerlink" href="#dropping-the-database" title="Permanent link">&para;</a></h3>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+$result = $db-&gt;drop();
+var_dump($result);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(2) {
+    [&quot;dropped&quot;]=&gt;
+    string(4) &quot;demo&quot;
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h3 id="executing-a-command">Executing a Command<a class="headerlink" href="#executing-a-command" title="Permanent link">&para;</a></h3>
+<p>While the library provides helpers for some common database commands, it is far
+from an <a href="https://docs.mongodb.org/manual/reference/command/">exhaustive list</a>.
+The following example demonstrates how the
+<a href="https://docs.mongodb.org/manual/reference/command/createUser/">createUser</a>
+command might be invoked:</p>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+/* Define a command document for creating a new database user */
+$createUserCmd = [
+    'createUser' =&gt; 'username',
+    'pwd' =&gt; 'password',
+    'roles' =&gt; [ 'readWrite' ],
+];
+
+/* It doesn't hurt to specify an explicit read preference for the command, in
+ * case the Database was created with a different read preference. This isn't
+ * required for other command helpers, as the library knows which commands might
+ * require a primary; however, the Database::command() method is generic. */
+$cursor = $db-&gt;command($createUserCmd, [
+    'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY),
+]);
+
+/* The command result will be the first and only document in the cursor */
+var_dump($cursor-&gt;toArray()[0]);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#8 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(1) {
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h2 id="collection-management">Collection Management<a class="headerlink" href="#collection-management" title="Permanent link">&para;</a></h2>
+<p>The Database class has several methods for managing collections.</p>
+<h3 id="creating-collections">Creating Collections<a class="headerlink" href="#creating-collections" title="Permanent link">&para;</a></h3>
+<p>MongoDB already creates collections implicitly when they are first referenced in
+commands (e.g. inserting a document into a new collection); however, collections
+may also be explicitly created with specific options. This is useful for
+creating
+<a href="https://docs.mongodb.org/manual/core/capped-collections/">capped collections</a>,
+enabling
+<a href="https://docs.mongodb.org/manual/core/document-validation/">document validation</a>,
+or supplying storage engine options.</p>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+$result = $db-&gt;createCollection('users', [
+    'validator' =&gt; [
+        'username' =&gt; ['$type' =&gt; 'string'],
+        'email' =&gt; ['$regex' =&gt; '@mongodb\.com$'],
+    ],
+]);
+var_dump($result);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(1) {
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h3 id="dropping-collections">Dropping Collections<a class="headerlink" href="#dropping-collections" title="Permanent link">&para;</a></h3>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+$result = $db-&gt;dropCollection('users');
+var_dump($result);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(3) {
+    [&quot;ns&quot;]=&gt;
+    string(10) &quot;demo.users&quot;
+    [&quot;nIndexesWas&quot;]=&gt;
+    int(1)
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h3 id="enumerating-collections">Enumerating Collections<a class="headerlink" href="#enumerating-collections" title="Permanent link">&para;</a></h3>
+<p>The Database class implements MongoDB&rsquo;s
+<a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-collections.rst">Enumerating Collections specification</a>.</p>
+<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+
+/* listCollections() returns an iterator of MongoDB\Model\CollectionInfo objects */
+foreach ($db-&gt;listCollections() as $collectionInfo) {
+    var_dump($collectionInfo);
+}
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\CollectionInfo)#8 (2) {
+  [&quot;name&quot;]=&gt;
+  string(5) &quot;users&quot;
+  [&quot;options&quot;]=&gt;
+  array(0) {
+  }
+}
+object(MongoDB\Model\CollectionInfo)#13 (2) {
+  [&quot;name&quot;]=&gt;
+  string(14) &quot;system.profile&quot;
+  [&quot;options&quot;]=&gt;
+  array(2) {
+    [&quot;capped&quot;]=&gt;
+    bool(true)
+    [&quot;size&quot;]=&gt;
+    int(1048576)
+  }
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../collection/" class="btn btn-neutral float-right" title="Collection"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../client/" class="btn btn-neutral" title="Client"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../client/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../collection/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
